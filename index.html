@@ -39,7 +39,8 @@
                         @click="attack(false)">Attack</button>
                 <button class="btn special-attack"
                         @click="attack(true)">Special Attack</button>
-                <button class="btn heal">Heal</button>
+                <button class="btn heal"
+                        @click="healAndHurt">Heal</button>
                 <button class="btn give-up"
                         @click="isGameRunning = false">Give up</button>
             </template>
