@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<head>
+    <meta charset="UTF-8">
+    <title>Monster Killer</title>
+    <link rel="stylesheet" href="styles.css">
+    <script src="https://unpkg.com/vue"></script>
+</head>
+<body>
+    <div id="app">
+        <div class="panel scores">
+            <div class="score">
+                <h1 class="title">Player</h1>
+                <div class="life-bar">
+                    <div class="life"
+                        :class="{danger: player.life < 20}"
+                        :style="{width: player.life + '%'}">
+                    </div>
+                </div>
+                <div> {{ player.life }}% </div>
+            </div>
+            <div class="score">
+                <h1 class="title">Monster</h1>
+                <div class="life-bar">
+                    <div class="life"
+                        :class="{danger: monster.life < 20}"
+                        :style="{width: monster.life + '%'}">
+                    </div>
+                </div>
+                <div>{{ monster.life }}%</div>
+            </div>
+        </div>
+        <div v-if="hasResult" class="panel result">
+            <div v-if="monster.life == 0" class="win">You win!!! :)</div>
+            <div v-else class="lose">You lose! :(</div>
+        </div>
+        <div class="panel buttons">
+            <template v-if="isGameRunning">
+                <button class="btn attack"
+                        @click="attack(false)">Attack</button>
+                <button class="btn special-attack"
+                        @click="attack(true)">Special Attack</button>
+                <button class="btn heal">Heal</button>
+                <button class="btn give-up"
+                        @click="isGameRunning = false">Give up</button>
+            </template>
+            <button v-else 
+                    class="btn new-game" 
+                    @click="startGame">Start game</button>
+        </div>
+        <div class="panel logs">
+            <ul>
+                <li></li>
+            </ul>
+        </div>
+    </div>
+    <script src="app.js"></script>
+</body>
+</html>
