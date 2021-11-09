@@ -48,9 +48,11 @@
                     class="btn new-game" 
                     @click="startGame">Start game</button>
         </div>
-        <div v-if="logs.lenght" class="panel logs">
+        <div v-if="logs.length" class="panel logs">
             <ul>
-                <li></li>
+                <li v-for="log in logs"
+                    :class="log.cls"
+                    class='logs'>{{ log.msg }}</li>
             </ul>
         </div>
     </div>
