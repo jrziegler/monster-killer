@@ -48,7 +48,7 @@
                     class="btn new-game" 
                     @click="startGame">Start game</button>
         </div>
-        <div class="panel logs">
+        <div v-if="logs.lenght" class="panel logs">
             <ul>
                 <li></li>
             </ul>
