@@ -22,13 +22,14 @@ new Vue({
             this.monster.life = 100
         },
         attack(special) {
-            console.log(special, this.getRandom(5, 10))
-            this.hurt(7, 12, false)
+            this.hurt('monster', 5, 10, special)
+            this.hurt('player', 7, 12, false)
         },
-        hurt(min, max, special) {
+        hurt(opponentLife, min, max, special) {
             const plus = special ? 5 : 0
             const hurt = this.getRandom(min + plus, max + plus)
-            this.player.life = Math.max(this.player.life - hurt, 0)
+            this[opponentLife].life = Math.max(this[opponentLife].life - hurt, 0)
+            console.log(this[opponentLife].life)
         },
         getRandom(min, max) {
             const value = Math.random() * (max -min) + min
@@ -36,6 +37,9 @@ new Vue({
         }
 	},
     watch: {
-
+        hasResult(value) {
+            if (value == true)
+                this.isGameRunning = false
+        }
     }
 })
